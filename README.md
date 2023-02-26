@@ -18,7 +18,7 @@
   npm i
       
   ## Usage
-  
+  Before using this application, please install node.
   
   ## Contributing
   
