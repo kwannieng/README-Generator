@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require('path');
 const inquirer = require("inquirer");
 const generateMarkdown = require("./utils/generateMarkdown");
+const { default: Choice } = require("inquirer/lib/objects/choice");
 
 // array of names for user
 const names = [
@@ -18,7 +19,8 @@ const names = [
         {
             type: 'input',
             name: 'installation',
-            message:'What is the installation of your project?'
+            message:'What is the installation of your project?',
+            default: 'npm i'
         },
         {
             type: 'input',
@@ -28,7 +30,8 @@ const names = [
         {
             type: 'list',
             name: 'license',
-            message:'What license does your project is covered under?'
+            message:'What license is your project covered by?',
+            choices: ['MIT', 'GPLv2', 'Apache', 'None']
         },
         {
             type: 'input',
@@ -38,7 +41,8 @@ const names = [
         {
             type: 'input',
             name: 'tests',
-            message:'What is the test instruction of your project?'
+            message:'What is the test instruction of your project?',
+            default: 'npm test'
         },
         {
             type: 'input',
@@ -54,17 +58,18 @@ const names = [
 
 // function to write README file
 function writeToFile() {
-    util.promisify(fs.generateMarkdown(data))   
+    return fs.writeFileSync(path.join(process.cwd(), fileName), data); 
 }
 
 
 // function to initialize program
 function init() {
-    inquirer.prompt(names)
-}
+    inquirer.prompt(names).then ((response)=>{
+        console.log(`Writing a README file`);
+        writeToFile('README.md', generateMarkdown(...response));
+    }
+    
+)}
 
 // function call to initialize program
-init()
-    .then((fileName, data) => ('README.md', writeToFile(fileName, data)))
-    .then(() => console.log('successfully generate a README.md'))
-    .catch((err) => console.error(err));
+init();
