@@ -5,7 +5,7 @@ const generateMarkdown = require("./utils/generateMarkdown");
 const { default: Choice } = require("inquirer/lib/objects/choice");
 
 // array of names for user
-const names = [
+const questions = [
         {
             type: 'input',
             name: 'title',
@@ -57,16 +57,16 @@ const names = [
 ];
 
 // function to write README file
-function writeToFile() {
+function writeToFile(fileName, data) {
     return fs.writeFileSync(path.join(process.cwd(), fileName), data); 
 }
 
 
 // function to initialize program
 function init() {
-    inquirer.prompt(names).then ((response)=>{
+    inquirer.prompt(questions).then((response)=>{
         console.log(`Writing a README file`);
-        writeToFile('README.md', generateMarkdown(...response));
+        writeToFile('README.md', generateMarkdown({...response}));
     }
     
 )}

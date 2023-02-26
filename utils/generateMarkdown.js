@@ -2,7 +2,7 @@
 
 function generateLicenseBadge (license) {
   if (license !== "None"){
-    return `![Github license] (https://img.shields.io/badge/license-${license}-blue.svg)`
+    return `![Github license](https://img.shields.io/badge/license-${license}-blue.svg)`
   } 
   return ''
 }
@@ -10,19 +10,18 @@ function generateLicenseBadge (license) {
 
 // function to generate markdown for README
 function generateMarkdown(data) {
-  return `${generateLicenseBadges(data.license)}
+  return `${generateLicenseBadge(data.license)}
   # ${data.title}
   ${data.title}
   
-  Table of Contents 
-  ------------- 
-  [Description](#Description)
-  [Installation](#Installation)
-  [Usage](#Usage)
-  [Tests](#Tests)
-  [License](#License)
-  [Developer's GitHub Profile](#Developer's GitHub Profile)
-  [Questions](#Questions)
+## Table of Contents 
+  - [Description](#description)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Tests](#tests)
+  - [License](#license)
+  - [Developer's GitHub Profile](#developer's-GitHub-Profile)
+  - [Questions](#questions)
       
   ## Description
   ${data.description}    
@@ -33,19 +32,19 @@ function generateMarkdown(data) {
   ## Usage
   ${data.usage}
   
-  ##Contributing
+  ## Contributing
   ${data.contribution}
   
-  ##Tests
+  ## Tests
   ${data.tests}
   
-  ##License
+  ## License
   ${data.license}
   
-  ##Developer's GitHub Profile
+  ## Developer's GitHub Profile
   ${data.github}
       
-  ##Questions
+  ## Questions
   If you have any questions regarding this project, please send an email to ${data.email}`
   ;
 }
