@@ -54,7 +54,7 @@ const names = [
 
 // function to write README file
 function writeToFile() {
-    util.promisify(fs.writeFile)
+    util.promisify(fs.generateMarkdown(data))   
 }
 
 
