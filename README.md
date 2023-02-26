@@ -12,7 +12,7 @@
   - [Questions](#questions)
       
   ## Description
-  An application to help user create a README file for their project.    
+  This is an application to help user create a README file for their project.    
       
   ## Installation
   npm i
